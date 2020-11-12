@@ -13,9 +13,13 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "item")
+@Getter
+@Setter
 public class Item {
 
 	@Id
@@ -91,7 +95,14 @@ public class Item {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
-	
-	
+
+	@Override
+	public String toString() {
+		return "Item{" +
+				"id=" + id +
+				", name='" + name + '\'' +
+				", price=" + price +
+				", description='" + description + '\'' +
+				'}';
+	}
 }

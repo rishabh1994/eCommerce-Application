@@ -2,6 +2,8 @@ package com.example.demo.controllers;
 
 import java.util.List;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +16,8 @@ import com.example.demo.model.persistence.repositories.ItemRepository;
 
 @RestController
 @RequestMapping("/api/item")
+@Getter
+@Setter
 public class ItemController {
 
 	@Autowired
