@@ -40,19 +40,23 @@ public class CartController {
 
     @PostMapping("/addToCart")
     public ResponseEntity<Cart> addTocart(@RequestBody ModifyCartRequest request) {
+        log.debug("Adding items to cart for the input request : {}", request.toString());
         User user = userRepository.findByUsername(request.getUsername());
         if (user == null) {
             log.warn("User not found");
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
+        log.debug("Found user for whome add to cart is called");
         Optional<Item> item = itemRepository.findById(request.getItemId());
         if (!item.isPresent()) {
             log.warn("Such an item is not present : {}", item);
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
+        log.debug("Found item for whome add to cart i called");
         Cart cart = user.getCart();
         IntStream.range(0, request.getQuantity())
                 .forEach(i -> cart.addItem(item.get()));
+        log.info("Adding to cart done");
         cartRepository.save(cart);
         return ResponseEntity.ok(cart);
     }
@@ -73,6 +77,7 @@ public class CartController {
         IntStream.range(0, request.getQuantity())
                 .forEach(i -> cart.removeItem(item.get()));
         cartRepository.save(cart);
+        log.info("Removal from cart done");
         return ResponseEntity.ok(cart);
     }
 

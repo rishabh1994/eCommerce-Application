@@ -40,7 +40,13 @@ public class ModifyCartRequest {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-	
-	
 
+	@Override
+	public String toString() {
+		return "ModifyCartRequest{" +
+				"username='" + username + '\'' +
+				", itemId=" + itemId +
+				", quantity=" + quantity +
+				'}';
+	}
 }
